@@ -20,10 +20,13 @@
     <h1>Olá, mundo!</h1> <!--COMENTARIO EM HTML-->
     <p>Já me livrei da maldição!!</p>
     <script>
-       var n1 = window.prompt('Digite um número: ')
-       var n2 = window.prompt('Digite outro número: ')
-       var total = n1 + n2
-       window.alert(total)
+       var n1 = Number(window.prompt('Digite um número: '))
+       var n2 = Number(window.prompt('Digite outro número: '))
+       var s = n1 + n2 
+       window.alert('A soma dos valores é ' + String(s) // Concatenação
+       // (number + number) para adição
+       // (string + string) para concatenação
+
     </script>
 </body>
 </html>
