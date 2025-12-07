@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            font-size: 30px;
+        }
+    </style>
 </head>
 <body>
     
 </body>
 <script>
-    window.alert("Olá, estou revisando JS")
-    window.confirm("Quer ver os próximos comandos?")
-    var n1 = window.prompt("Digite um número: ")
-    var n2 = window.prompt("Digite outro número: ")
+    window.alert('Olá, estou revisando JS')
+    var nome = window.prompt('Qual é seu nome?')
+    window.alert(`Prazer em te conhecer ${nome}`)
+    var n1 = Number.parseInt(window.prompt(`Digite um número: `))
+    var n2 = Number.parseInt(window.prompt(`Digite outro número: `))
     var s = n1 + n2
-    window.alert("O resultado da soma é" + s)
+    window.alert(`A soma dos números ${n1} e ${n2} é ${s}.`)
+    var idade = Number.parseInt(window.prompt(`Quantos anos você tem?`))
+    document.write(`Seu nome é ${nome}, tem ${idade} anos e é ${idade>=18?'Maior de idade':'Menor de idade'} <br>`) 
+    document.write(`Seu nome tem ${nome.length} letras<br>
+    Em letras minúsculas: ${nome.toLowerCase()}<br> 
+    Em letras maiúsculas: ${nome.toUpperCase()}`)
 </script>
 </html>
