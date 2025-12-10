@@ -1,30 +1,71 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Revisando</title>
     <style>
-        * {
-            font-size: 30px;
+        body {
+            font: normal 20px arial;
+        }
+        div#res {
+            margin-top: 20px;
+        }
+
+        input {
+            height: 20px;
+        }
+
+        input[type='button'] {
+            height: 26px;
         }
     </style>
 </head>
 <body>
-    
+    <h1>Seu horário atual</h1>
+    <input type="button" value="Verificar Horário" onclick="verhor">
+    <h1>Calculadora de Soma</h1>
+    <form>
+        <input type="number" name="txtn1" id="txtn1" placeholder="Insira o primeiro número"> +
+        <input type="number" name="txtn2" id="txtn2" placeholder="Insira o segundo número">
+        <input type="button" value="Somar" onclick="somar()">
+        <div id="res">Resposta</div>
+    </form>
+    <h1>Velocidade Limite</h1>
+    <form action="">
+        <input type="number" name="txtvel" id="txtvel" placeholder="Informe sua velocidade">Km/h <br>
+        <input type="button" value="Enviar" onclick="calvel()">
+        <div id="res1">Resposta</div>
+    </form>
 </body>
 <script>
-    window.alert('Olá, estou revisando JS')
-    var nome = window.prompt('Qual é seu nome?')
-    window.alert(`Prazer em te conhecer ${nome}`)
-    var n1 = Number.parseInt(window.prompt(`Digite um número: `))
-    var n2 = Number.parseInt(window.prompt(`Digite outro número: `))
-    var s = n1 + n2
-    window.alert(`A soma dos números ${n1} e ${n2} é ${s}.`)
-    var idade = Number.parseInt(window.prompt(`Quantos anos você tem?`))
-    document.write(`Seu nome é ${nome}, tem ${idade} anos e é ${idade>=18?'Maior de idade':'Menor de idade'} <br>`) 
-    document.write(`Seu nome tem ${nome.length} letras<br>
-    Em letras minúsculas: ${nome.toLowerCase()}<br> 
-    Em letras maiúsculas: ${nome.toUpperCase()}`)
+    var horaDate = new Date()
+    var hora = horaDate.getHours
+
+    function verhor (){
+        
+    }
+    
+    function somar(){
+        var tn1 = window.document.querySelector('input#txtn1')
+        var tn2 = window.document.getElementById('txtn2')
+        var res = window.document.getElementById('res')
+        n1 = Number(tn1.value)
+        n2 = Number(tn2.value)
+        s = n1 + n2
+        res.innerHTML = `A soma de ${n1} e ${n2} é ${s}.`
+    }
+
+    function calvel(){
+        var tvel = window.document.getElementById('txtvel')
+        var vel = Number(tvel.value)
+        var res = window.document.getElementById('res1')
+        
+        if (vel>50){
+            res.innerHTML = `Sua velocidade foi ${vel}Km/h, você está <strong>MUTADO!</strong>`
+        } else {
+            res.innerHTML = `Sua velocidade foi ${vel}Km/h, você não será mutado.`
+        }
+    }
 </script>
 </html>
