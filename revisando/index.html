@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,48 +23,82 @@
 </head>
 <body>
     <h1>Seu horário atual</h1>
-    <input type="button" value="Verificar Horário" onclick="verhor">
+    <input type="button" value="Verificar Horário e Data" onclick="verhordat()">
+    <div id="res">Resposta</div>
+    
     <h1>Calculadora de Soma</h1>
     <form>
         <input type="number" name="txtn1" id="txtn1" placeholder="Insira o primeiro número"> +
         <input type="number" name="txtn2" id="txtn2" placeholder="Insira o segundo número">
         <input type="button" value="Somar" onclick="somar()">
-        <div id="res">Resposta</div>
+        <div id="res1"></div>
     </form>
+    
     <h1>Velocidade Limite</h1>
     <form action="">
         <input type="number" name="txtvel" id="txtvel" placeholder="Informe sua velocidade">Km/h <br>
         <input type="button" value="Enviar" onclick="calvel()">
-        <div id="res1">Resposta</div>
+        <div id="res2"></div>
     </form>
 </body>
 <script>
-    var horaDate = new Date()
-    var hora = horaDate.getHours
-
-    function verhor (){
+    function verhordat() {
+        var res = window.document.querySelector('div#res')
         
+        var dataint = new Date()
+        var data = dataint.getDay()
+        
+        switch (data) {
+            case 0:
+                res.innerHTML = `Hoje é domingo`
+            break
+            case 1:
+                res.innerHTML = `Hoje é Segunda-feira`
+            break
+            case 2:
+                res.innerHTML = `Hoje é Terça-feira`
+            break
+            case 3:
+                res.innerHTML = `Hoje é Quarta-feira`
+            break
+            case 4:
+                res.innerHTML = `Hoje é Quinta-feira`
+            break
+            case 5:
+                res.innerHTML = `Hoje é Sexta-feira`
+            break
+            case 6:
+                res.innerHTML = `Hoje é Sábado`
+            break
+
+        }
+
+        var horaDate = new Date()
+        var hora = horaDate.getHours()
+        
+        res.innerHTML += ` e são ${hora} horas.`
+      
     }
     
     function somar(){
         var tn1 = window.document.querySelector('input#txtn1')
         var tn2 = window.document.getElementById('txtn2')
-        var res = window.document.getElementById('res')
+        var res = window.document.getElementById('res1')
         n1 = Number(tn1.value)
         n2 = Number(tn2.value)
         s = n1 + n2
-        res.innerHTML = `A soma de ${n1} e ${n2} é ${s}.`
+        res1.innerHTML = `A soma de ${n1} e ${n2} é ${s}.`
     }
 
     function calvel(){
         var tvel = window.document.getElementById('txtvel')
         var vel = Number(tvel.value)
-        var res = window.document.getElementById('res1')
+        var res = window.document.getElementById('res2')
         
         if (vel>50){
-            res.innerHTML = `Sua velocidade foi ${vel}Km/h, você está <strong>MUTADO!</strong>`
+            res2.innerHTML = `Sua velocidade foi ${vel}Km/h, você está <strong>MUTADO!</strong>`
         } else {
-            res.innerHTML = `Sua velocidade foi ${vel}Km/h, você não será mutado.`
+            res2.innerHTML = `Sua velocidade foi ${vel}Km/h, você não será mutado.`
         }
     }
 </script>
