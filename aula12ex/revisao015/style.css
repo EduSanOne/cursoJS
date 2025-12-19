@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgb(48, 205, 253);
+    font: normal 15pt arial;
+}
+
+header {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.466);
+}
+
+img#foto {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+
+section {
+    width: 500px;
+    background-color: white;
+    display: block;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.329);
+}
+
+footer {
+    color: white;
+    text-align: center;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.466);
+}
