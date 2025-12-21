@@ -5,13 +5,16 @@ function contar(){
 
     var res = window.document.getElementById('res')
 
-    if (ini == '' || fim == '' || pas == '') {
-        window.alert('[ERRO] - Insira números nos campos abaixo: ')
-    }else {
+    if (ini === '' || fim === '' || pas === '') {
+        window.alert('[ERRO] - Insira números nos campos abaixo! ')
+    }else if (ini <= fim) {
         for (ini;ini <= fim; ini += pas) {
-        res.innerHTML += `${ini} `
+        res.innerHTML += `${ini} 👉`
+    }
+    } else {
+        for (ini;ini >= fim; ini -= pas) {
+        res.innerHTML += `${ini} 👉` 
     }
     }
     res.innerHTML += `🎌`
-
 }
