@@ -3,6 +3,7 @@ function gentab() {
     var res = window.document.getElementById('res')
     var c = 1
 
+    res.innerHTML = ''
     if (num === ''){
         window.alert('[ERRO] - Insira um número valido no campo abaixo!')
     } else {
