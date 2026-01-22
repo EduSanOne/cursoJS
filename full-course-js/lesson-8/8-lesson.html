@@ -9,17 +9,57 @@
 
 </body>
 <script>
-    const product = {
+    const product1 = {
         name: 'basketball',
-        ['delivery-time']: '1 day',
+        ['delivery-time']: '3 day',
         price: 2095
     };
-    console.log(product);
 
-    product.price += 500
+    const product2 = {
+        name: 'socks',
+        price: 500
+    }
 
-    console.log(product);
+    const product3 = {
+        name: 'socks',
+        price: 500
+    }
+
+    console.log(product1);
+
+    product1.price += 500
+
+    console.log(product1);
     console.log(['delivery-time'])
+
+    function comparePrice() {
+        if (product1.price < product2.price){
+            console.log(`The product cheaper is ${product1.name}`)
+            console.log(product1)
+        } else {
+            console.log(`The product cheaper is ${product2.name}`)
+            console.log(product2)
+        }
+    }
+
+    comparePrice()
+    isSameProduct()
+
+    function isSameProduct(){
+        if (product2.name === product3.name && product2.price === product3.price){
+            console.log('Equal')
+        } else {
+            console.log('Not equal')
+        }
+    }
+
+    let phrase = 'GOOD MORNING '
+
+    phrase = phrase.toLowerCase()
+
+    console.log(phrase)
+    
+    console.log(phrase.repeat(3))
 
 </script>
 </html>
