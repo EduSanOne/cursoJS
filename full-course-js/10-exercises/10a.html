@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercises 10</title>
+    <style>
+        .b1 {
+            display: block;
+            background-color: rgb(255,216,20);
+            border: none;
+            padding: 10px 50px;
+            border-radius: 16px;
+            font: bold 16px arial;
+            margin-bottom: 20px;
+        }
+
+        .b2 {
+            background-color: black;
+            color: white;
+        }
+
+        .b3 {
+            background-color: rgb(230, 230, 230);
+            color: black;
+        }
+
+        .b2wid {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            font: bold 16px arial;
+            margin-right: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <button class="b1">Add to cart</button>
+
+    <button class="b2 b2wid">Request now</button>
+    <button class="b3 b2wid">Schedule for later</button>
+
+    <button class="js-button js-test">Teste</button>
+</body>
+<script>
+    let elementButton = document.querySelector('.js-button')
+    console.log(elementButton.classList.contains('js-test'))
+</script>
+</html>
