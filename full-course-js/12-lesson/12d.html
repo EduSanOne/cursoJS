@@ -6,22 +6,39 @@
     <title>Document</title>
 </head>
 <body>
-    <button class="css_start" onclick="change()">Start</button>
+    <button class="css_start" onclick="change()">Start</button><br><br>
+    <button class="css_add" onclick="js_add()">Add to cart</button>
+    <div id="res"></div>
 </body>
 <script>
-    let js_button = document.querySelector('.css_start');
+    
     
     function change(){
+        let js_button = document.querySelector('.css_start');
+        
         if(js_button.innerHTML === 'Start'){
-            setTimeout(js_button.innerHTML = 'Loading!'),1000;
-            js_button.innerHTML = 'Finished';
+            js_button.innerHTML = 'Loading!';
+            setTimeout(function(){js_button.innerHTML = 'Finished';},1000);
         } else {
             js_button.innerHTML = 'Loading!';
             js_button.innerHTML = 'Start';
         }
     };
 
+    let elementalId;
 
+    function js_add(){
+        let res = document.querySelector('#res')
+        res.innerHTML = 'Added'
+        
+        clearTimeout(elementalId)
+
+        elementalId = setTimeout(function(){
+            res.innerHTML = '';
+            console.log(elementalId)
+        },2000);
+
+    }
 
     
 </script>
