@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="css_start" onclick="change()">Start</button>
+</body>
+<script>
+    let js_button = document.querySelector('.css_start');
+    
+    setInterval(function change(){
+        if(js_button.innerHTML === 'Start'){
+            js_button.innerHTML = 'Finished!'
+        } else {
+            js_button.innerHTML = 'Start'
+        }
+        
+    },1000);
+
+
+
+    
+</script>
+</html>
