@@ -1,3 +1,7 @@
+import { cart, addToCart} from "../data/cart.js";
+
+import { products } from "../data/products.js";
+
 let productsHTML = '';
 
 products.forEach((product) => {
@@ -55,13 +59,8 @@ document.querySelector('.js-grid-products').innerHTML = productsHTML;
 
 const addedMessageTimeouts = {};
 
-
-document.querySelectorAll('.js-add-to-cart').forEach((button) => {
-  button.addEventListener('click', () => {
-    const productId = button.dataset.productId;
-    // const { productId } = button.dataset; same thing
-    
-    const addedMessage = document.querySelector(`.added-to-cart-${productId}`);
+function addedMessage(productId){
+  const addedMessage = document.querySelector(`.added-to-cart-${productId}`);
 
     addedMessage.classList.add('add-to-cart-visible');
 
@@ -75,38 +74,22 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     },2000);
 
     addedMessageTimeouts[productId] = timeoutId;
+};
 
-    let matchingItem;
-
-    let quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const productId = button.dataset.productId;
+    // const { productId } = button.dataset; same thing
     
-    cart.forEach((item) => {
-      if (productId === item.productId){
-        matchingItem = item;
-      }
-    });
-
-
-    if (matchingItem && quantity == 1){
-      matchingItem.quantity += 1;
-    } else {
-      cart.push({
-        // productId: productId,
-        // quantity: quantity
-        productId,
-        quantity
-      });
-    };
-
+    //ADDED MESSAGE
+    addedMessage(productId);    
+    
+    //AllFunctionsOfCart
     let cartQuantity = 0;
-
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity; 
+    
+    addToCart(productId,cartQuantity);
+    
   });
 });
 
-
-
+//12:54 aonde parei
