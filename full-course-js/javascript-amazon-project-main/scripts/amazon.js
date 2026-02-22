@@ -1,12 +1,14 @@
-import { cart, addToCart} from "../data/cart.js";
+import {cart, addToCart, calculateCartQuantity} from '../data/cart.js';
+// import {cart as myCart} from '../data/cart.js';
 
-import { products } from "../data/products.js";
+import { products } from '../data/products.js';
+import { formatCurrency } from './utils/money.js';
 
 let productsHTML = '';
 
 products.forEach((product) => {
-    productsHTML += 
-        `<div class="product-container">
+    productsHTML += `
+        <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
               src="${product.image}">
@@ -25,11 +27,11 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            $${(product.priceCents / 100).toFixed(2)}
+            $${formatCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
-            <select class="js-quantity-selector-${product.id}">
+            <select class="js-select-${product.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -45,51 +47,53 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart added-to-cart-${product.id}">
+          <div class="added-to-cart js-add-icon-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">Add to Cart
+          <button class="add-to-cart-button button-primary js-button-cart" data-product-id = "${product.id}">
+            Add to Cart
           </button>
         </div>`
 });
 
-document.querySelector('.js-grid-products').innerHTML = productsHTML;
+document.querySelector('.products-grid').innerHTML = productsHTML;
 
-const addedMessageTimeouts = {};
+//Go through all produts in cart getting the quantity
+updateCartQuantity();
+function updateCartQuantity(){
+  const cartQuantity = calculateCartQuantity();
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
 
-function addedMessage(productId){
-  const addedMessage = document.querySelector(`.added-to-cart-${productId}`);
+//ICON ADDED
+function addedShow(productId){
+  let jsAddIcon = document.querySelector(`.js-add-icon-${productId}`);
+    jsAddIcon.classList.add('add-to-cart-visible');
 
-    addedMessage.classList.add('add-to-cart-visible');
-
-    const previousTimeoutId = addedMessageTimeouts[productId];
-    if (previousTimeoutId){
-      clearTimeout(previousTimeoutId);
+    if (addMessageTimeouts[productId]){
+      clearTimeout(addMessageTimeouts[productId]);
     }
 
-    const timeoutId = setTimeout(() => {
-      addedMessage.classList.remove('add-to-cart-visible')
+    const timeoutId = setTimeout(()=> {
+      jsAddIcon.classList.remove('add-to-cart-visible');
     },2000);
 
-    addedMessageTimeouts[productId] = timeoutId;
-};
+    addMessageTimeouts[productId] = timeoutId;
+}
 
-document.querySelectorAll('.js-add-to-cart').forEach((button) => {
-  button.addEventListener('click', () => {
-    const productId = button.dataset.productId;
-    // const { productId } = button.dataset; same thing
-    
-    //ADDED MESSAGE
-    addedMessage(productId);    
-    
-    //AllFunctionsOfCart
-    let cartQuantity = 0;
-    
-    addToCart(productId,cartQuantity);
-    
-  });
+const addMessageTimeouts = {};
+
+//ADD TO CART
+document.querySelectorAll('.js-button-cart').forEach((button) => {
+    button.addEventListener('click', () => {
+      const productId = button.dataset.productId;
+
+      addedShow(productId);
+      //------ CART ---------- //
+      //verify if there is a duplicated product and create a variable
+      addToCart(productId);
+      updateCartQuantity();
+    })
 });
-
-//12:54 aonde parei

@@ -656,20 +656,5 @@ export const products = [
       "apparel",
       "mens"
     ]
-  },
-  {
-    id:"id1",
-    image: "images/products/tenis-nike-court-vision-lo-male.jpg",
-    name: "Nike Court Vision Male",
-    rating: {
-      stars: 4.5,
-      count: 10000
-    },
-    priceCents: 15000,
-    keywords: [
-      "nike",
-      "court",
-      "vision"
-    ]
   }
 ];

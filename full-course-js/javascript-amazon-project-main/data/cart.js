@@ -1,31 +1,64 @@
-export const cart = [];
+export let cart = JSON.parse(localStorage.getItem('cart'));
 
-export function addToCart(productId, cartQuantity){
-  let quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
-    document.querySelector(`.js-quantity-selector-${productId}`).value = '1';
+if (!cart) {
+  cart = [{
+    productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+    quantity: 2
+},{
+    productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+    quantity: 1
+}];
+}
+
+function saveToStorage() {
+  localStorage.setItem('cart',JSON.stringify(cart));
+}
+
+export function addToCart(productId){
+  //SELECTOR of Quantity
+  let quantitySelect = Number(document.querySelector(`.js-select-${productId}`).value);
+  document.querySelector(`.js-select-${productId}`).value = '1';
+  
+  let matchingItem;
+    cart.forEach((item) => {
+        if (productId == item.productId){
+            matchingItem = item;
+        }
+    });
     
-    let matchingItem;
+    if(matchingItem){
+      matchingItem.quantity += quantitySelect;
+    } else {
+      cart.push({
+        productId: productId,
+        quantity: quantitySelect    
+      })
+    }
+    console.log(cart);
+
+    saveToStorage();
+}
+
+export function removeFromCart(productId){
+    const newCart = [];
 
     cart.forEach((cartItem) => {
-      if (productId === cartItem.productId){
-        matchingItem = cartItem;
+      if (cartItem.productId !== productId){
+          newCart.push(cartItem);
       }
     });
 
-    if (matchingItem){
-      matchingItem.quantity += quantity;
-    } else {
-      cart.push({
-        // productId: productId,
-        // quantity: quantity
-        productId,
-        quantity
-      });
-    };
-    console.log(cart)
+    cart = newCart;
 
+    saveToStorage();
+}
+
+export function calculateCartQuantity(txtchose){
+    let cartQuantity = 0;  
+    
     cart.forEach((cartItem) => {
       cartQuantity += cartItem.quantity;
     });
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-};
+    
+    return cartQuantity;
+}
