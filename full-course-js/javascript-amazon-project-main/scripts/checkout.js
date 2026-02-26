@@ -133,6 +133,9 @@ document.querySelectorAll('.js-update-link').forEach((link) => {
         document.querySelector(`.quantity-label`).classList.add('is-editing-quantity')
 
         document.querySelector(`.update-quantity-link`).classList.add('is-editing-quantity');
+
+        const input = document.querySelector(`.js-quantity-input-${productId}`);
+        input.focus();
     });
 });
 
